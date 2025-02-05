@@ -1,6 +1,6 @@
-import 'package:ecommerce_app/core/theming/app_colors.dart';
+
 import 'package:ecommerce_app/core/theming/styles.dart';
-import 'package:ecommerce_app/feature/auth/ui/widgets/custom_text_buttom.dart';
+import 'package:ecommerce_app/feature/auth/ui/widgets/custom_text_button.dart';
 
 import 'package:flutter/material.dart';
 
@@ -16,10 +16,9 @@ class DontHaveAccountText extends StatelessWidget {
           "Don't have an account? ",
           style: TextStyles.font15DarkBlueMedium,
         ),
-        CustomTextButtom(
+        CustomTextButton(
           textButton: "Sign Up",
-           textStyle: TextStyles.font16BlueSemiBold,
-            backgroundColor: AppColors.kPrimaryColor,
+           
             onTap: (){},
             
             )

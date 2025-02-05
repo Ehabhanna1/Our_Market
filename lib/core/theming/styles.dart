@@ -57,10 +57,10 @@ class TextStyles {
     color: AppColors.lighterGray,
   );
 
-  static TextStyle font14LightGrayRegular = TextStyle(
-    fontSize: 14.sp,
+  static TextStyle font18DarkSemiBold = TextStyle(
+    fontSize: 18.sp,
     fontWeight: FontWeightHelper.regular,
-    color: AppColors.kGreyColor,
+    color: AppColors.kBlackColor,
   );
 
   static TextStyle font14DarkBlueMedium = TextStyle(
