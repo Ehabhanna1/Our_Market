@@ -46,7 +46,10 @@ class LoginView extends StatelessWidget {
                                      validator: (value) {
                                        
                                      },
-                                      labelText: 'Email',),
+                                      labelText: 'Email',
+                                      suffixIcon: Icon(Icons.email_outlined),
+                                      
+                                      ),
                                   verticalSpace(20),
                                   AppTextFormField(
                                     hintText: 'Enter Password',
@@ -57,6 +60,7 @@ class LoginView extends StatelessWidget {
                                       return null;
                                      },
                                       labelText: 'Password',
+                                     suffixIcon: Icon(Icons.visibility_off),
                                     
                                   
                                     
@@ -67,6 +71,7 @@ class LoginView extends StatelessWidget {
                                     children: [
                                       CustomTextButton(
                                         textButton: "Forgot Password?",
+                                        
                                         onTap: () {
                                           navigateTo(context, ForgetPasswordView());
                                         },
@@ -111,7 +116,9 @@ class LoginView extends StatelessWidget {
                            ),
             
                            verticalSpace(30),
-                           DontHaveAccountText(),
+                           const DontHaveAccountText(),
+            
+                          
           
                               
              ], ), 
