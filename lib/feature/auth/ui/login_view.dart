@@ -8,6 +8,7 @@ import 'package:ecommerce_app/feature/auth/ui/forget_password_view.dart';
 import 'package:ecommerce_app/feature/auth/ui/widgets/custom_text_button.dart';
 
 import 'package:ecommerce_app/feature/auth/ui/widgets/dont_have_account.dart';
+import 'package:ecommerce_app/feature/main_nav_bar/ui/main_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -73,7 +74,7 @@ class LoginView extends StatelessWidget {
                                         textButton: "Forgot Password?",
                                         
                                         onTap: () {
-                                          navigateTo(context, ForgetPasswordView());
+                                          navigateTo(context,const ForgetPasswordView());
                                         },
                                       ),
                                     ],
@@ -84,7 +85,11 @@ class LoginView extends StatelessWidget {
                           buttonText: "Login",
                            textStyle: TextStyles.font18WhiteSemiBold,
                            //buttonHeight: 20.h,
-                            onPressed: (){},),
+                            onPressed: (){
+                              navigateTo(context,  MainNavBar());
+                            },
+                            
+                            ),
                             verticalSpace( 20),
                             Text("OR Login With",
                             style: TextStyles.font15DarkBlueMedium,
