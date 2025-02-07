@@ -49,16 +49,16 @@ class TextStyles {
     fontWeight: FontWeightHelper.regular,
     color: AppColors.kBlackColor,
   );
-   static TextStyle font12BlueRegular = TextStyle(
-    fontSize: 12.sp,
+ static TextStyle font13OrangeRegular = TextStyle(
+    fontSize: 13.sp,
     fontWeight: FontWeightHelper.regular,
     color: AppColors.kPrimaryColor,
   );
 
-  static TextStyle font13BlueRegular = TextStyle(
+  static TextStyle font13WhiteRegular = TextStyle(
     fontSize: 13.sp,
     fontWeight: FontWeightHelper.regular,
-    color: AppColors.kPrimaryColor,
+    color: AppColors.kWhiteColor,
   );
 
   static TextStyle font14GrayRegular = TextStyle(

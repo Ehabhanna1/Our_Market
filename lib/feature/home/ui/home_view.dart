@@ -3,6 +3,7 @@ import 'package:ecommerce_app/core/theming/app_colors.dart';
 import 'package:ecommerce_app/core/theming/styles.dart';
 
 import 'package:ecommerce_app/core/widgets/custom_search_field.dart';
+import 'package:ecommerce_app/feature/home/ui/widgets/categories_list.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -30,35 +31,54 @@ class HomeView extends StatelessWidget {
           style: TextStyles.font20DarRegular,
           ),
           verticalSpace( 10),
-          SizedBox(
-            height: 100.h,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: categories.length,
-              itemBuilder: (context, index) => Padding(
-                padding: const EdgeInsets.all(10),
-                child: Column(
-                  children: [
-                    CircleAvatar(
-                      radius: 30.r,
-                      
-                      backgroundColor: AppColors.kPrimaryColor,
-                      child: Icon(categories[index].icon,
-                      size: 30.r,
-                      color: AppColors.kWhiteColor,
-            ),
-            
-                  ),
-                  Text(categories[index].text,
-                 
-                  ),
-                  
-                  
-                   ] ),
+         CategoriesList(),
+         verticalSpace(15),
+         Card(
 
+          child: Column(
+            children: [
+              Stack(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(16.r),
+                      bottomRight: Radius.circular(16.r),
+                      topRight: Radius.circular(16.r)
+                    ),
+                    child: Image(
+                      image: NetworkImage("https://img.freepik.com/free-vector/beautiful-cosmetic-ad_23-2148471068.jpg?uid=R184239962&ga=GA1.1.1137416873.1736544603&semt=ais_hybrid"),
+                      height: 150.h,
+                      width: double.maxFinite,
+                      fit: BoxFit.fill,
+                      ),
+
+                  ),
+                  Positioned(
+                    child: Container(
+                      alignment: Alignment.center,
+                      width: 50.w,
+                      height: 35.h,
+                      decoration: BoxDecoration(
+                        color: AppColors.kPrimaryColor,
+                        borderRadius: BorderRadius.only(
+                          bottomRight: Radius.circular(18),
+                          
+                          
+                        ),
+                      ),
+                      child: Text("10% OFF",
+                      textAlign: TextAlign.center,
+                      style: TextStyles.font13WhiteRegular,),
+                      
+                      ),
+                    ),
+                 
+                 
+                ],
               ),
-            ),  
+            ],
           ),
+         ),
   
       ],
       
@@ -67,17 +87,4 @@ class HomeView extends StatelessWidget {
       ),
     );
   }
-}
-List<Category> categories =[
-  Category(icon: Icons.sports, text: "Sports"),
-  Category(icon: Icons.laptop_mac_outlined, text: "Electronics"),
-  Category(icon: Icons.collections, text: "Collections"),
-  Category(icon: Icons.book_online_outlined, text: "Books"),
-  Category(icon: Icons.games_outlined, text: "Games"),
-];
-
-class Category{
-  final IconData icon;
-  final String text;
-  Category({required this.icon,required this.text});
 }
