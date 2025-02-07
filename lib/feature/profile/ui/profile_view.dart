@@ -3,6 +3,7 @@ import 'package:ecommerce_app/core/helper/spacing.dart';
 import 'package:ecommerce_app/core/theming/app_colors.dart';
 import 'package:ecommerce_app/core/theming/styles.dart';
 import 'package:ecommerce_app/feature/profile/ui/edit_name_view.dart';
+import 'package:ecommerce_app/feature/profile/ui/my_order_view.dart';
 import 'package:ecommerce_app/feature/profile/ui/widgets/custom_row_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -60,7 +61,9 @@ class ProfileView extends StatelessWidget {
                       ),
                       verticalSpace(15),
                       CustomRowButton(
-                      onTap: (){},
+                      onTap: (){
+                        navigateTo(context, const MyOrderView());
+                      },
                       text: 'My Orders',
                       icon: Icons.shopping_bag_outlined,
                       ),

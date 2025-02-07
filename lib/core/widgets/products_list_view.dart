@@ -3,13 +3,20 @@ import 'package:flutter/material.dart';
 
 
 class ProductsListView extends StatelessWidget {
-  const ProductsListView({super.key});
+
+ final bool? shrinkWrap;
+ final ScrollPhysics? physics;
+
+
+
+
+  const ProductsListView({super.key, this.shrinkWrap, this.physics});
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
+          shrinkWrap: shrinkWrap ?? true,
+          physics: physics ?? NeverScrollableScrollPhysics(),
           itemCount: 10,
           
           itemBuilder: (context, index){
