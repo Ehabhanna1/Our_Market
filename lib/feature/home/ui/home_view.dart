@@ -1,11 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:ecommerce_app/core/helper/spacing.dart';
-import 'package:ecommerce_app/core/theming/app_colors.dart';
-import 'package:ecommerce_app/core/theming/styles.dart';
-import 'package:ecommerce_app/core/widgets/cached_network_image.dart';
-import 'package:ecommerce_app/core/widgets/card_products.dart';
-import 'package:ecommerce_app/core/widgets/custom_elevation_button.dart';
 
+
+import 'package:ecommerce_app/core/helper/spacing.dart';
+import 'package:ecommerce_app/core/theming/styles.dart';
 import 'package:ecommerce_app/core/widgets/custom_search_field.dart';
 import 'package:ecommerce_app/core/widgets/products_list_view.dart';
 import 'package:ecommerce_app/feature/home/ui/widgets/categories_list.dart';
@@ -24,6 +20,11 @@ class HomeView extends StatelessWidget {
       padding: const EdgeInsets.all(10),
       child: ListView(
         children: [
+          Text("Welcome To Our Market",
+          textAlign: TextAlign.center,
+          style: TextStyles.font24BlackBold,
+          ),
+          verticalSpace( 10),
           CustomSearchField(),
           verticalSpace( 20),
           Image.asset("assets/images/onboardingone.png",
