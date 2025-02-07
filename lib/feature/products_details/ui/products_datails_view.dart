@@ -2,7 +2,13 @@ import 'package:ecommerce_app/core/functions/build_custom_app_bar.dart';
 import 'package:ecommerce_app/core/helper/spacing.dart';
 import 'package:ecommerce_app/core/theming/app_colors.dart';
 import 'package:ecommerce_app/core/theming/styles.dart';
+import 'package:ecommerce_app/core/widgets/app_rating_bar.dart';
+import 'package:ecommerce_app/core/widgets/app_text_form_field.dart';
 import 'package:ecommerce_app/core/widgets/cached_network_image.dart';
+import 'package:ecommerce_app/feature/products_details/ui/widgets/comments_list.dart';
+import 'package:ecommerce_app/feature/products_details/ui/widgets/row_product_name_and_price.dart';
+import 'package:ecommerce_app/feature/products_details/ui/widgets/row_rating_number_and_add_favorite.dart';
+import 'package:ecommerce_app/feature/products_details/ui/widgets/users_comments_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
@@ -25,35 +31,10 @@ class ProductsDatailsView extends StatelessWidget {
                           padding: EdgeInsets.symmetric(horizontal: 15,vertical: 16),
                           child: Column(
                             children: [
-                             Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                 Text(
-                                "Product Name",
-                                style: TextStyles.font18BlackSemiBold,      
-                              ),
-                               Text(
-                                "220 LE",
-                                style: TextStyles.font18BlackBold,      
-                              ),
-                              ],
-                             ),
+                              RowProductNameAndPrice(),
                              verticalSpace(20),
-                              Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                               Row(
-                                children: [
-                                  Text(
-                                "4 ", style: TextStyles.font15DarkBlueMedium,
-                                  ),
-
-                                 Icon(Icons.star, color: Colors.amber,size: 25,),
-                               ],),
-
-                               Icon(Icons.favorite_border_outlined, color: AppColors.kGreyColor,size: 30,),
-                              ],
-                             ),
+                             
+                            RowRatingNumberAndAddFavorite(),
 
                                verticalSpace(30),
                                Text(
@@ -61,21 +42,42 @@ class ProductsDatailsView extends StatelessWidget {
                                 style: TextStyles.font20DarkRegular,
                                ),
                                verticalSpace(20),
-                               RatingBar.builder(
-                                 initialRating: 3,
-                                    minRating: 1,
-                                   direction: Axis.horizontal,
-                                         allowHalfRating: true,
-                                      itemCount: 5,
-                                         itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                                             itemBuilder: (context, _) => Icon(
-                                                  Icons.star,
-                                  color: Colors.amber,
-                                         ),
-                                                  onRatingUpdate: (rating) {
-                                                      print(rating);
-                                    },
-                                                ),
+
+                               AppRatingBar(),
+
+                                 verticalSpace(20),
+                              
+                              AppTextFormField(
+                                hintText: "Type Your Feedback",
+                                 validator: (value) {
+                                   
+                                 },
+                                  labelText: "Your Feedback",
+                                  suffixIcon: IconButton(
+                                    onPressed: (){},
+                                    icon: Icon(
+                                      Icons.send_outlined,
+                                      //color: AppColors.kGreyColor,
+                                      size: 25,
+                                    ),
+                                    
+                                  )
+                                  ), 
+
+                                  verticalSpace(20),
+                                  Text("Comments", style: TextStyles.font20DarkRegular,
+                                  textAlign: TextAlign.start,
+                                  
+                                  ),
+
+                                  verticalSpace(20),
+                                CommentsList(),
+
+                                 
+                                 
+
+
+
 
 
                             ],
