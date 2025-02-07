@@ -21,6 +21,11 @@ class TextStyles {
     fontWeight: FontWeightHelper.bold,
     color: Colors.white,
   );
+   static TextStyle font24WhiteBold = TextStyle(
+    fontSize: 24.sp,
+    fontWeight: FontWeightHelper.bold,
+    color: Colors.white,
+  );
   static TextStyle font18BlackSemiBold = TextStyle(
     fontSize: 18.sp,
     fontWeight: FontWeightHelper.semiBold,

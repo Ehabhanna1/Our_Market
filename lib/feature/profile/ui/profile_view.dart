@@ -1,6 +1,8 @@
+import 'package:ecommerce_app/core/functions/navigation.dart';
 import 'package:ecommerce_app/core/helper/spacing.dart';
 import 'package:ecommerce_app/core/theming/app_colors.dart';
 import 'package:ecommerce_app/core/theming/styles.dart';
+import 'package:ecommerce_app/feature/profile/ui/edit_name_view.dart';
 import 'package:ecommerce_app/feature/profile/ui/widgets/custom_row_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -49,8 +51,10 @@ class ProfileView extends StatelessWidget {
                     ),
                     verticalSpace(15),
                     CustomRowButton(
-                      onTap: (){},
-                      text: 'Edit Profile',
+                      onTap: (){
+                        navigateTo(context, const EditNameView());
+                      },
+                      text: 'Edit Name',
                       icon: Icons.person_2_outlined,
                       
                       ),
