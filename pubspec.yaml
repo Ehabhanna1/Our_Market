@@ -37,6 +37,7 @@ dependencies:
   flutter_screenutil: ^5.9.3
   google_nav_bar: ^5.0.7
   flutter_bloc: ^9.0.0
+  cached_network_image: ^3.4.1
   
 
   
