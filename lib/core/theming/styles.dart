@@ -64,7 +64,7 @@ class TextStyles {
     fontWeight: FontWeightHelper.regular,
     color: AppColors.kBlackColor,
   );
-  static TextStyle font20DarRegular = TextStyle(
+  static TextStyle font20DarkRegular = TextStyle(
     fontSize: 20.sp,
     fontWeight: FontWeightHelper.regular,
     color: AppColors.kBlackColor,
