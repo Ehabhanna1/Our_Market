@@ -1,6 +1,5 @@
 import 'package:ecommerce_app/core/functions/build_custom_app_bar.dart';
 import 'package:ecommerce_app/core/helper/spacing.dart';
-import 'package:ecommerce_app/core/theming/app_colors.dart';
 import 'package:ecommerce_app/core/theming/styles.dart';
 import 'package:ecommerce_app/core/widgets/app_rating_bar.dart';
 import 'package:ecommerce_app/core/widgets/app_text_form_field.dart';
@@ -8,9 +7,7 @@ import 'package:ecommerce_app/core/widgets/cached_network_image.dart';
 import 'package:ecommerce_app/feature/products_details/ui/widgets/comments_list.dart';
 import 'package:ecommerce_app/feature/products_details/ui/widgets/row_product_name_and_price.dart';
 import 'package:ecommerce_app/feature/products_details/ui/widgets/row_rating_number_and_add_favorite.dart';
-import 'package:ecommerce_app/feature/products_details/ui/widgets/users_comments_list.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 
 class ProductsDatailsView extends StatelessWidget {
