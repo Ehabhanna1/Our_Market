@@ -17,9 +17,26 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
 
 
   Future<void> login({required email,required String password}) async {
+    emit(LoginLoading());
     try {
       await client.auth.signInWithPassword(email: email, password: password);
       emit(LoginSuccess());
+    } on AuthException catch (error) {
+
+      log(error.toString());
+
+      emit(LoginError(error.message));
+    } catch (error) {
+      log(error.toString());
+      emit(LoginError(error.toString()));
+    }
+  }
+
+    Future<void> signUp({required String name,required email,required String password}) async {
+    emit(SignUpLoading());
+    try {
+      await client.auth.signUp(email: email, password: password);
+      emit(SignUpSuccess());
     } on AuthException catch (error) {
 
       log(error.toString());

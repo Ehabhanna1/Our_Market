@@ -38,6 +38,12 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     return BlocConsumer<AuthenticationCubit, AuthenticationState>(
       listener: (context, state) {
+         if (state is LoginSuccess) {
+         
+          navigatePushReplacement(context,  MainNavBar());
+        }
+
+
         if (state is LoginError) {
           showMessage(context, state.message);
         }
@@ -90,7 +96,7 @@ class _LoginViewState extends State<LoginView> {
                               hintText: 'Enter Password',
                               validator: (value) {
                                 if (value == null || value.isEmpty) {
-                                  return 'Please enter some text';
+                                  return 'Please enter your password';
                                 }
                                 return null;
                               },
