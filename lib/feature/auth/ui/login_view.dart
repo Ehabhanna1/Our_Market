@@ -7,13 +7,13 @@ import 'package:ecommerce_app/core/widgets/app_text_button.dart';
 import 'package:ecommerce_app/core/widgets/app_text_form_field.dart';
 import 'package:ecommerce_app/feature/auth/logic/cubit/authentication_cubit.dart';
 import 'package:ecommerce_app/feature/auth/ui/forget_password_view.dart';
+import 'package:ecommerce_app/feature/auth/ui/widgets/Custom_google_sign_in.dart';
 import 'package:ecommerce_app/feature/auth/ui/widgets/custom_text_button.dart';
 
 import 'package:ecommerce_app/feature/auth/ui/widgets/dont_have_account.dart';
 import 'package:ecommerce_app/feature/main_nav_bar/ui/main_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -140,29 +140,9 @@ class _LoginViewState extends State<LoginView> {
                               style: TextStyles.font15DarkBlueMedium,
                             ),
                             verticalSpace(20),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                AppTextButton(
-                                  buttonWidth: 100.w,
-                
-                                  buttonText: "Google",
-                
-                                  textStyle: TextStyles.font18WhiteSemiBold,
-                                  //buttonHeight: 20.h,
-                                  onPressed: () {},
-                                ),
-                                AppTextButton(
-                                  buttonWidth: 100.w,
-                                  buttonText: "Facebook",
-                
-                                  textStyle: TextStyles.font18WhiteSemiBold,
-                
-                                  //buttonHeight: 20.h,
-                                  onPressed: () {},
-                                ),
-                              ],
-                            ),
+                            
+                            CustomGoogleSignIn(),
+
                             verticalSpace(30),
                             const DontHaveAccountText(),
                           ],

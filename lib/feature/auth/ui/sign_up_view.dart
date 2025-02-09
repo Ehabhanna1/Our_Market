@@ -6,7 +6,6 @@ import 'package:ecommerce_app/core/theming/styles.dart';
 import 'package:ecommerce_app/core/widgets/app_text_button.dart';
 import 'package:ecommerce_app/core/widgets/app_text_form_field.dart';
 import 'package:ecommerce_app/feature/auth/logic/cubit/authentication_cubit.dart';
-import 'package:ecommerce_app/feature/auth/ui/login_view.dart';
 
 import 'package:ecommerce_app/feature/auth/ui/widgets/custom_text_button.dart';
 import 'package:ecommerce_app/feature/main_nav_bar/ui/main_nav_bar.dart';
