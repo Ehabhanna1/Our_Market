@@ -98,6 +98,20 @@ const webClientId = '737722342128-v332ndp6j1lck111a6gi2e685lnpc07i.apps.googleus
     
     
   }
+  Future<void> resetPassword({required String email}) async {
+
+    emit(ResetPasswordLoading());
+    try{
+      await client.auth.resetPasswordForEmail(email);
+      emit(ResetPasswordSuccess());
+    }catch(e){
+      log(e.toString());
+      emit(ResetPasswordError());
+    }
+
+
+
+  }
 
 
 
@@ -105,7 +119,7 @@ const webClientId = '737722342128-v332ndp6j1lck111a6gi2e685lnpc07i.apps.googleus
 }
 
 
-//const webClientId = '737722342128-v332ndp6j1lck111a6gi2e685lnpc07i.apps.googleusercontent.com';
+
 
 
 

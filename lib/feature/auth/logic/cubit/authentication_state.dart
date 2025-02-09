@@ -38,3 +38,10 @@ final class LogOutLoading extends AuthenticationState {}
 
 final class LogOutError extends AuthenticationState {}
 
+// reset password states
+final class ResetPasswordSuccess extends AuthenticationState {}
+
+final class ResetPasswordLoading extends AuthenticationState {}
+
+final class ResetPasswordError extends AuthenticationState {}
+
