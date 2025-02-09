@@ -84,7 +84,7 @@ const webClientId = '737722342128-v332ndp6j1lck111a6gi2e685lnpc07i.apps.googleus
       idToken: idToken,
       accessToken: accessToken,
     );
-    
+    await addedUserData(email: googleUser!.email, name: googleUser!.displayName!);
 
     emit(GoogleSignInSuccess());
     return response;
@@ -121,8 +121,7 @@ const webClientId = '737722342128-v332ndp6j1lck111a6gi2e685lnpc07i.apps.googleus
     emit(UserDataAddedLoading());
     try{
       await client
-    .from('users')
-    .insert({
+    .from('users').upsert({
       "user_id": client.auth.currentUser!.id,
       "user_name": name,
       "user_email": email
