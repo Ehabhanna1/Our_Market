@@ -26,7 +26,7 @@ class LoginView extends StatefulWidget {
 
 class _LoginViewState extends State<LoginView> {
 
-    final TextEditingController emailController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -118,7 +118,7 @@ class _LoginViewState extends State<LoginView> {
                                 CustomTextButton(
                                   textButton: "Forgot Password?",
                                   onTap: () {
-                                    navigateTo(context, const ForgetPasswordView());
+                                    cubit.resetPassword(email: emailController.text);
                                   },
                                 ),
                               ],

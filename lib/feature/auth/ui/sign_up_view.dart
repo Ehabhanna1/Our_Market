@@ -79,6 +79,7 @@ class _SignUpViewState extends State<SignUpView> {
                         padding: const EdgeInsets.all(16.0),
                         child: Column(
                           children: [
+
                             AppTextFormField(
                               controller: _nameController,
                               hintText: 'Enter Your Name',
@@ -91,7 +92,9 @@ class _SignUpViewState extends State<SignUpView> {
                               labelText: 'Name',
                               suffixIcon: Icon(Icons.person_2_outlined),
                             ),
+
                             verticalSpace(20),
+
                             AppTextFormField(
                               controller: _emailController,
                               hintText: 'Enter Your Email',
@@ -134,7 +137,7 @@ class _SignUpViewState extends State<SignUpView> {
                                 if (_formKey.currentState!.validate()) {
                                   
                                  cubit.signUp(
-                                  name: _nameController.text,
+                                   name: _nameController.text,
                                    email: _emailController.text,
                                     password: _passwordController.text);
                                 }

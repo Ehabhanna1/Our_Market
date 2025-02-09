@@ -39,8 +39,12 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
     emit(SignUpLoading());
     try {
       await client.auth.signUp(password: password, email: email);
+
+      // note you can show a loading indicator here to add user data first ,then sinup success
      
+      await addedUserData(email: email, name: name);
       emit(SignUpSuccess());
+     /// end
     } on AuthException catch (e) {
       log(e.toString());
       emit(SignUpError(e.message));
@@ -111,6 +115,25 @@ const webClientId = '737722342128-v332ndp6j1lck111a6gi2e685lnpc07i.apps.googleus
 
 
 
+  }
+
+  Future<void> addedUserData({required String email, required String name}) async {
+    emit(UserDataAddedLoading());
+    try{
+      await client
+    .from('users')
+    .insert({
+      "user_id": client.auth.currentUser!.id,
+      "user_name": name,
+      "user_email": email
+      
+      });
+
+      emit(UserDataAddedSuccess());
+    }catch(e){
+      log(e.toString());
+      emit(UserDataAddedError());
+    }
   }
 
 

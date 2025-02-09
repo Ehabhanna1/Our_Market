@@ -1,4 +1,3 @@
-import 'package:ecommerce_app/core/functions/navigation.dart';
 import 'package:ecommerce_app/core/functions/show_message.dart';
 import 'package:ecommerce_app/core/helper/spacing.dart';
 import 'package:ecommerce_app/core/theming/app_colors.dart';
@@ -6,7 +5,6 @@ import 'package:ecommerce_app/core/theming/styles.dart';
 import 'package:ecommerce_app/core/widgets/app_text_button.dart';
 import 'package:ecommerce_app/core/widgets/app_text_form_field.dart';
 import 'package:ecommerce_app/feature/auth/logic/cubit/authentication_cubit.dart';
-import 'package:ecommerce_app/feature/auth/ui/login_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -29,7 +27,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
       listener: (context, state) {
         if (state is ResetPasswordSuccess) {
           Navigator.pop(context);
-          //navigatePushReplacement(context, LoginView());
+          
 
           showMessage(context, "Check Your Email");
         }
