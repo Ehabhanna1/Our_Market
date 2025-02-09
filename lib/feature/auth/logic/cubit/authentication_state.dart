@@ -24,3 +24,11 @@ final class SignUpError extends AuthenticationState {
   SignUpError(this.message);
 }
 
+// google sign in states
+final class GoogleSignInSuccess extends AuthenticationState {}
+
+final class GoogleSignInLoading extends AuthenticationState {}
+
+final class GoogleSignInError extends AuthenticationState {
+}
+

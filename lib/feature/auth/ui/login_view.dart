@@ -38,7 +38,7 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
     return BlocConsumer<AuthenticationCubit, AuthenticationState>(
       listener: (context, state) {
-         if (state is LoginSuccess) {
+         if (state is LoginSuccess || state is GoogleSignInSuccess) {
          
           navigatePushReplacement(context,  MainNavBar());
         }
@@ -141,7 +141,11 @@ class _LoginViewState extends State<LoginView> {
                             ),
                             verticalSpace(20),
                             
-                            CustomGoogleSignIn(),
+                            CustomGoogleSignIn(
+                              onTap: () {
+                                cubit.googleSignIn();
+                              },
+                            ),
 
                             verticalSpace(30),
                             const DontHaveAccountText(),

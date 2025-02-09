@@ -5,15 +5,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
 class CustomGoogleSignIn extends StatelessWidget {
+
+  final void Function()? onTap;
   const CustomGoogleSignIn({
-    super.key,
+    super.key, this.onTap,
    
   });
  
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: onTap,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

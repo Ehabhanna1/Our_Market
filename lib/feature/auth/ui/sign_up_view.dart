@@ -6,6 +6,7 @@ import 'package:ecommerce_app/core/theming/styles.dart';
 import 'package:ecommerce_app/core/widgets/app_text_button.dart';
 import 'package:ecommerce_app/core/widgets/app_text_form_field.dart';
 import 'package:ecommerce_app/feature/auth/logic/cubit/authentication_cubit.dart';
+import 'package:ecommerce_app/feature/auth/ui/widgets/Custom_google_sign_in.dart';
 
 import 'package:ecommerce_app/feature/auth/ui/widgets/custom_text_button.dart';
 import 'package:ecommerce_app/feature/main_nav_bar/ui/main_nav_bar.dart';
@@ -37,7 +38,7 @@ class _SignUpViewState extends State<SignUpView> {
   Widget build(BuildContext context) {
     return BlocConsumer<AuthenticationCubit, AuthenticationState>(
       listener: (context, state) {
-        if (state is SignUpSuccess) {
+        if (state is SignUpSuccess || state is GoogleSignInSuccess) {
          
           navigatePushReplacement(context, MainNavBar());
         }
@@ -146,30 +147,12 @@ class _SignUpViewState extends State<SignUpView> {
                               style: TextStyles.font15DarkBlueMedium,
                             ),
                             verticalSpace(20),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                AppTextButton(
-                                  buttonWidth: 100.w,
-                
-                                  buttonText: "Google",
-                
-                                  textStyle: TextStyles.font18WhiteSemiBold,
-                                  //buttonHeight: 20.h,
-                                  onPressed: () {},
-                                ),
-                                AppTextButton(
-                                  buttonWidth: 100.w,
-                                  buttonText: "Facebook",
-                
-                                  textStyle: TextStyles.font18WhiteSemiBold,
-                
-                                  //buttonHeight: 20.h,
-                                  onPressed: () {},
-                                ),
-                              ],
+                            CustomGoogleSignIn(
+                              onTap: () {
+                                cubit.googleSignIn();
+                              },
                             ),
-                            verticalSpace(30),
+                             verticalSpace(30),
                             Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
