@@ -32,7 +32,7 @@ class ForgetPasswordView extends StatelessWidget {
          
           children: [
  
-              Text("Reset Password",
+              Text("Enter Your Email",
               textAlign: TextAlign.center,
               style: TextStyles.font24BlackBold,
               

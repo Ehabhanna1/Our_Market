@@ -13,7 +13,6 @@ import 'package:ecommerce_app/feature/main_nav_bar/ui/main_nav_bar.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SignUpView extends StatefulWidget {
   const SignUpView({super.key});

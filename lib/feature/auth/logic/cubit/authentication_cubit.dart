@@ -3,6 +3,7 @@ import 'dart:developer';
 
 
 
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -83,6 +84,19 @@ const webClientId = '737722342128-v332ndp6j1lck111a6gi2e685lnpc07i.apps.googleus
 
     emit(GoogleSignInSuccess());
     return response;
+  }
+
+  Future<void> logOut() async {
+    emit(LogOutLoading());
+    try {
+      await client.auth.signOut();
+      emit(LogOutSuccess());
+    } catch (e) {
+      log(e.toString());
+      emit(LogOutError());
+    }
+    
+    
   }
 
 
