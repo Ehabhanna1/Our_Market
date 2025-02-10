@@ -2,6 +2,7 @@ import 'package:ecommerce_app/core/functions/navigation.dart';
 import 'package:ecommerce_app/core/helper/spacing.dart';
 import 'package:ecommerce_app/core/theming/app_colors.dart';
 import 'package:ecommerce_app/core/theming/styles.dart';
+import 'package:ecommerce_app/feature/auth/data/models/users_model.dart';
 import 'package:ecommerce_app/feature/auth/logic/cubit/authentication_cubit.dart';
 import 'package:ecommerce_app/feature/auth/ui/login_view.dart';
 import 'package:ecommerce_app/feature/profile/ui/edit_name_view.dart';
@@ -23,6 +24,7 @@ class ProfileView extends StatelessWidget {
         }
       },
       builder: (context, state) {
+        UsersDataModel? user = context.read<AuthenticationCubit>().usersDataModel;
         return  state is LogOutLoading ? 
         const Center(child: CircularProgressIndicator()) :
         
@@ -52,12 +54,12 @@ class ProfileView extends StatelessWidget {
                     ),
                     verticalSpace(10),
                     Text(
-                      "user name",
+                      user?.name ?? "user name",
                       style: TextStyles.font18BlackBold,
                     ),
                     verticalSpace(10),
                     Text(
-                      "user email",
+                     user?.email ?? "user email",
                       style: TextStyles.font15DarkBlueMedium,
                     ),
                     verticalSpace(15),
