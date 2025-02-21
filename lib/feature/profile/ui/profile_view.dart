@@ -25,7 +25,7 @@ class ProfileView extends StatelessWidget {
       },
       builder: (context, state) {
         UsersDataModel? user = context.read<AuthenticationCubit>().usersDataModel;
-        return  state is LogOutLoading ? 
+        return  state is LogOutLoading || state is GetUserDataLoading ?
         const Center(child: CircularProgressIndicator()) :
         
          Center(

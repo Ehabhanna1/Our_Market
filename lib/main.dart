@@ -1,4 +1,5 @@
 import 'package:ecommerce_app/core/functions/my_observe.dart';
+import 'package:ecommerce_app/core/functions/senstive_data.dart';
 import 'package:ecommerce_app/our_market.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,7 +11,7 @@ void main() async{
   await Supabase.initialize(
     url: 'https://qrevfiwchdguvtyztgus.supabase.co',
     
-    anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InFyZXZmaXdjaGRndXZ0eXp0Z3VzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzkwMTg0ODQsImV4cCI6MjA1NDU5NDQ4NH0.behbp7tkSLXajcRY41rnQO3nQGL-Sz6HS1LnX5M6Vss',
+    anonKey: anonsKey,
   );
 
   Bloc.observer = MyObserve();
