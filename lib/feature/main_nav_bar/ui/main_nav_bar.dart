@@ -36,10 +36,9 @@ class MainNavBar extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                 child: GNav(
-                  onTabChange: (index) {
-                    navBarCubit.changeCurrentIndex(index);
-                    
-                  },
+                    onTabChange: (index) {
+                      navBarCubit.changeCurrentIndex(index);
+                    },
                     rippleColor: AppColors
                         .kPrimaryColor, // tab button ripple color when pressed
                     hoverColor:

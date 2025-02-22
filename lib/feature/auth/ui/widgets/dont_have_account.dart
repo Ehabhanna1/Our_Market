@@ -1,4 +1,3 @@
-
 import 'package:ecommerce_app/core/functions/navigation.dart';
 import 'package:ecommerce_app/core/theming/styles.dart';
 import 'package:ecommerce_app/feature/auth/ui/sign_up_view.dart';
@@ -11,22 +10,17 @@ class DontHaveAccountText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          "Don't have an account? ",
-          style: TextStyles.font15DarkBlueMedium,
-        ),
-        CustomTextButton(
-          textButton: "Sign Up",
-           
-            onTap: (){
-              navigateTo(context, const SignUpView());
-            },
-            
-            )
-        
-       ] );
+    return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+      Text(
+        "Don't have an account? ",
+        style: TextStyles.font15DarkBlueMedium,
+      ),
+      CustomTextButton(
+        textButton: "Sign Up",
+        onTap: () {
+          navigateTo(context, const SignUpView());
+        },
+      )
+    ]);
   }
 }

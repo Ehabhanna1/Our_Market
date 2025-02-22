@@ -1,8 +1,4 @@
-
 import 'dart:developer';
-
-
-
 
 import 'package:ecommerce_app/feature/auth/data/models/users_model.dart';
 import 'package:flutter/material.dart';
@@ -15,10 +11,9 @@ part 'authentication_state.dart';
 class AuthenticationCubit extends Cubit<AuthenticationState> {
   AuthenticationCubit() : super(AuthenticationInitial());
 
-
   SupabaseClient client = Supabase.instance.client;
 
- Future<void> login({required String email, required String password}) async {
+  Future<void> login({required String email, required String password}) async {
     emit(LoginLoading());
     try {
       await client.auth.signInWithPassword(password: password, email: email);
@@ -32,8 +27,9 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
       emit(LoginError(e.toString()));
     }
   }
-   // Sign up 
-    Future<void> signUp (
+
+  // Sign up
+  Future<void> signUp(
       {required String name,
       required String email,
       required String password}) async {
@@ -42,11 +38,12 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
       await client.auth.signUp(password: password, email: email);
 
       // note you can show a loading indicator here to add user data first ,then sinup success
-     
+
       await addedUserData(email: email, name: name);
       await getUserData();
       emit(SignUpSuccess());
-     /// end
+
+      /// end
     } on AuthException catch (e) {
       log(e.toString());
       emit(SignUpError(e.message));
@@ -57,12 +54,12 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
   }
 
   // google
-   GoogleSignInAccount? googleUser;
+  GoogleSignInAccount? googleUser;
   Future<AuthResponse> googleSignIn() async {
     emit(GoogleSignInLoading());
 
-const webClientId = '737722342128-v332ndp6j1lck111a6gi2e685lnpc07i.apps.googleusercontent.com';
-    
+    const webClientId =
+        '737722342128-v332ndp6j1lck111a6gi2e685lnpc07i.apps.googleusercontent.com';
 
     final GoogleSignIn googleSignIn = GoogleSignIn(
       // clientId: iosClientId,
@@ -86,7 +83,8 @@ const webClientId = '737722342128-v332ndp6j1lck111a6gi2e685lnpc07i.apps.googleus
       idToken: idToken,
       accessToken: accessToken,
     );
-    await addedUserData(email: googleUser!.email, name: googleUser!.displayName!);
+    await addedUserData(
+        email: googleUser!.email, name: googleUser!.displayName!);
     await getUserData();
     emit(GoogleSignInSuccess());
     return response;
@@ -101,39 +99,33 @@ const webClientId = '737722342128-v332ndp6j1lck111a6gi2e685lnpc07i.apps.googleus
       log(e.toString());
       emit(LogOutError());
     }
-    
-    
   }
-  Future<void> resetPassword({required String email}) async {
 
+  Future<void> resetPassword({required String email}) async {
     emit(ResetPasswordLoading());
-    try{
+    try {
       await client.auth.resetPasswordForEmail(email);
       emit(ResetPasswordSuccess());
-    }catch(e){
+    } catch (e) {
       log(e.toString());
       emit(ResetPasswordError());
     }
-
-
-
   }
-  
-   // inset => add user data
-   // upsert => add or update user data
-  Future<void> addedUserData({required String email, required String name}) async {
+
+  // inset => add user data
+  // upsert => add or update user data
+  Future<void> addedUserData(
+      {required String email, required String name}) async {
     emit(UserDataAddedLoading());
-    try{
-      await client
-    .from('users').upsert({
-      "user_id": client.auth.currentUser!.id,
-      "user_name": name,
-      "user_email": email
-      
+    try {
+      await client.from('users').upsert({
+        "user_id": client.auth.currentUser!.id,
+        "user_name": name,
+        "user_email": email
       });
 
       emit(UserDataAddedSuccess());
-    }catch(e){
+    } catch (e) {
       log(e.toString());
       emit(UserDataAddedError());
     }
@@ -144,28 +136,20 @@ const webClientId = '737722342128-v332ndp6j1lck111a6gi2e685lnpc07i.apps.googleus
   UsersDataModel? usersDataModel;
   Future<void> getUserData() async {
     emit(GetUserDataLoading());
-    try{
-      final data = await client.from('users').select().eq("user_id", client.auth.currentUser!.id);
+    try {
+      final data = await client
+          .from('users')
+          .select()
+          .eq("user_id", client.auth.currentUser!.id);
       usersDataModel = UsersDataModel(
-        userId: data[0]['user_id'],
-       name: data[0]['user_name'],
-        email: data[0]['user_email']);
+          userId: data[0]['user_id'],
+          name: data[0]['user_name'],
+          email: data[0]['user_email']);
       log(data.toString());
       emit(GetUserDataSuccess());
-    }catch(e){
+    } catch (e) {
       log(e.toString());
       emit(GetUserDataError());
     }
   }
-
-
-
-
 }
-
-
-
-
-
-
-

@@ -7,42 +7,34 @@ class CategoriesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  SizedBox(
-            height: 100.h,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: categories.length,
-              itemBuilder: (context, index) => Padding(
-                padding: const EdgeInsets.all(10),
-                child: Column(
-                  children: [
-                    CircleAvatar(
-                      radius: 30.r,
-                      
-                      backgroundColor: AppColors.kPrimaryColor,
-                      child: Icon(categories[index].icon,
-                      size: 30.r,
-                      color: AppColors.kWhiteColor,
-            ),
-            
-                  ),
-                  Text(categories[index].text,
-                 
-                  ),
-                  
-                  
-                   ] ),
-
+    return SizedBox(
+      height: 100.h,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: categories.length,
+        itemBuilder: (context, index) => Padding(
+          padding: const EdgeInsets.all(10),
+          child: Column(children: [
+            CircleAvatar(
+              radius: 30.r,
+              backgroundColor: AppColors.kPrimaryColor,
+              child: Icon(
+                categories[index].icon,
+                size: 30.r,
+                color: AppColors.kWhiteColor,
               ),
-            ),  
-          );
+            ),
+            Text(
+              categories[index].text,
+            ),
+          ]),
+        ),
+      ),
+    );
   }
 }
 
-
-
-
-List<Category> categories =[
+List<Category> categories = [
   Category(icon: Icons.sports, text: "Sports"),
   Category(icon: Icons.laptop_mac_outlined, text: "Electronics"),
   Category(icon: Icons.collections, text: "Collections"),
@@ -51,8 +43,8 @@ List<Category> categories =[
   Category(icon: Icons.badge_outlined, text: "Badges"),
 ];
 
-class Category{
+class Category {
   final IconData icon;
   final String text;
-  Category({required this.icon,required this.text});
+  Category({required this.icon, required this.text});
 }

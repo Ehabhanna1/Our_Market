@@ -4,6 +4,7 @@ part of 'authentication_cubit.dart';
 sealed class AuthenticationState {}
 
 final class AuthenticationInitial extends AuthenticationState {}
+
 // login states
 final class LoginSuccess extends AuthenticationState {}
 
@@ -58,4 +59,3 @@ final class GetUserDataLoading extends AuthenticationState {}
 final class GetUserDataSuccess extends AuthenticationState {}
 
 final class GetUserDataError extends AuthenticationState {}
-

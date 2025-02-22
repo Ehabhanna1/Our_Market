@@ -17,7 +17,6 @@ class ForgetPasswordView extends StatefulWidget {
 }
 
 class _ForgetPasswordViewState extends State<ForgetPasswordView> {
-
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
 
@@ -27,7 +26,6 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
       listener: (context, state) {
         if (state is ResetPasswordSuccess) {
           Navigator.pop(context);
-          
 
           showMessage(context, "Check Your Email");
         }
@@ -35,74 +33,75 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
       builder: (context, state) {
         return Scaffold(
           backgroundColor: AppColors.kScaffoldColor,
-          
-          body: state is ResetPasswordLoading ?
-          const Center(child: CircularProgressIndicator()) :
-          SafeArea(
-            child: Form(
-              key: formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    "Enter Your Email",
-                    textAlign: TextAlign.center,
-                    style: TextStyles.font24BlackBold,
-                  ),
-                  verticalSpace(50),
-                  Card(
-                    margin: EdgeInsets.all(24.h),
-                    color: AppColors.kWhiteColor,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(17),
-                      ),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Column(
-                        children: [
-                          AppTextFormField(
-                            controller: emailController,
-                            hintText: "Enter Your Email",
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return "Please Enter Your Email";
-                              }
-              
-                              return null;
-                            },
-                            labelText: "Email",
-                            suffixIcon: Icon(
-                              Icons.email_outlined,
-                              size: 20.sp,
+          body: state is ResetPasswordLoading
+              ? const Center(child: CircularProgressIndicator())
+              : SafeArea(
+                  child: Form(
+                    key: formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Enter Your Email",
+                          textAlign: TextAlign.center,
+                          style: TextStyles.font24BlackBold,
+                        ),
+                        verticalSpace(50),
+                        Card(
+                          margin: EdgeInsets.all(24.h),
+                          color: AppColors.kWhiteColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(17),
                             ),
                           ),
-                          verticalSpace(30),
-                          AppTextButton(
-                            buttonText: "Submit",
-                            textStyle: TextStyles.font18WhiteSemiBold,
-                            onPressed: () {
-                              if (formKey.currentState!.validate()) {
-                                context.read<AuthenticationCubit>().resetPassword(email: emailController.text);
-                              }
+                          child: Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Column(
+                              children: [
+                                AppTextFormField(
+                                  controller: emailController,
+                                  hintText: "Enter Your Email",
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return "Please Enter Your Email";
+                                    }
 
-
-                            },
+                                    return null;
+                                  },
+                                  labelText: "Email",
+                                  suffixIcon: Icon(
+                                    Icons.email_outlined,
+                                    size: 20.sp,
+                                  ),
+                                ),
+                                verticalSpace(30),
+                                AppTextButton(
+                                  buttonText: "Submit",
+                                  textStyle: TextStyles.font18WhiteSemiBold,
+                                  onPressed: () {
+                                    if (formKey.currentState!.validate()) {
+                                      context
+                                          .read<AuthenticationCubit>()
+                                          .resetPassword(
+                                              email: emailController.text);
+                                    }
+                                  },
+                                ),
+                                verticalSpace(20),
+                              ],
+                            ),
                           ),
-                          verticalSpace(20),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
-                ],
-              ),
-            ),
-          ),
+                ),
         );
       },
     );
   }
+
   @override
   void dispose() {
     emailController.dispose();

@@ -1,5 +1,6 @@
 import 'package:ecommerce_app/core/theming/app_colors.dart';
 import 'package:flutter/material.dart';
+
 class CustomTextButton extends StatelessWidget {
   const CustomTextButton({
     super.key,
@@ -8,7 +9,7 @@ class CustomTextButton extends StatelessWidget {
   });
   final void Function()? onTap;
   final String textButton;
-  
+
   @override
   Widget build(BuildContext context) {
     return InkWell(

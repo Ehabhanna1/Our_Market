@@ -7,14 +7,13 @@ import 'package:ecommerce_app/core/widgets/app_text_form_field.dart';
 
 import 'package:flutter/material.dart';
 
-
 class EditNameView extends StatelessWidget {
   const EditNameView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:  buildCustomAppBar(context, "Edit Name"),
+      appBar: buildCustomAppBar(context, "Edit Name"),
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: Column(
@@ -22,18 +21,20 @@ class EditNameView extends StatelessWidget {
             verticalSpace(30),
             AppTextFormField(
               hintText: "Enter Your Name",
-               validator: (value) {
-                 
-               },
-                labelText: "Name",
-                suffixIcon: Icon(Icons.person_2_outlined,size: 25,color: AppColors.kGreyColor,),
-                ),
+              validator: (value) {},
+              labelText: "Name",
+              suffixIcon: Icon(
+                Icons.person_2_outlined,
+                size: 25,
+                color: AppColors.kGreyColor,
+              ),
+            ),
             verticalSpace(30),
             AppTextButton(
               buttonText: "Update",
-               textStyle: TextStyles.font18WhiteBold,
-                onPressed: () {},
-                ),
+              textStyle: TextStyles.font18WhiteBold,
+              onPressed: () {},
+            ),
           ],
         ),
       ),

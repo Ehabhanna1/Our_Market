@@ -1,16 +1,15 @@
 import 'package:ecommerce_app/core/theming/app_colors.dart';
 import 'package:flutter/material.dart';
 
-
 class CustomElevationButton extends StatelessWidget {
   const CustomElevationButton({
     super.key,
     required this.text,
-    this.onTap, 
+    this.onTap,
   });
   final String text;
   final void Function()? onTap;
-  
+
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(

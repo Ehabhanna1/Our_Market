@@ -10,22 +10,19 @@ class StoreView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      
       padding: const EdgeInsets.all(10),
       child: ListView(
         children: [
-          Text("Welcome To Our Market",
-          textAlign: TextAlign.center,
-          style: TextStyles.font24BlackBold,
+          Text(
+            "Welcome To Our Market",
+            textAlign: TextAlign.center,
+            style: TextStyles.font24BlackBold,
           ),
-          verticalSpace( 10),
+          verticalSpace(10),
           CustomSearchField(),
-          verticalSpace( 20),
-           ProductsListView(),
-      ],
-      
-      
-         
+          verticalSpace(20),
+          ProductsListView(),
+        ],
       ),
     );
   }

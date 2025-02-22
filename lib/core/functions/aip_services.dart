@@ -7,7 +7,6 @@ class ApiServices {
       baseUrl: "https://qrevfiwchdguvtyztgus.supabase.co/rest/v1/",
       headers: {
         'apiKey': anonsKey,
-        
       },
     ),
   );
@@ -15,6 +14,7 @@ class ApiServices {
   Future<Response> getData(String url) async {
     return await _dio.get(url);
   }
+
   Future<Response> postData(String url, Map<String, dynamic> data) async {
     return await _dio.post(url, data: data);
   }
@@ -26,6 +26,4 @@ class ApiServices {
   Future<Response> deleteData(String url) async {
     return await _dio.delete(url);
   }
-
-
 }

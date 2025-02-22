@@ -3,25 +3,23 @@ import 'package:ecommerce_app/core/theming/font_weight_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
-
 class TextStyles {
   static TextStyle font24BlackBold = TextStyle(
     fontSize: 24.sp,
     fontWeight: FontWeightHelper.bold,
     color: Colors.black,
   );
-   static TextStyle font18WhiteSemiBold = TextStyle(
+  static TextStyle font18WhiteSemiBold = TextStyle(
     fontSize: 18.sp,
     fontWeight: FontWeightHelper.semiBold,
     color: Colors.white,
   );
-   static TextStyle font18WhiteBold = TextStyle(
+  static TextStyle font18WhiteBold = TextStyle(
     fontSize: 18.sp,
     fontWeight: FontWeightHelper.bold,
     color: Colors.white,
   );
-   static TextStyle font24WhiteBold = TextStyle(
+  static TextStyle font24WhiteBold = TextStyle(
     fontSize: 24.sp,
     fontWeight: FontWeightHelper.bold,
     color: Colors.white,
@@ -54,7 +52,7 @@ class TextStyles {
     fontWeight: FontWeightHelper.medium,
     color: AppColors.kBlackColor,
   );
-   static TextStyle font18WhiteMedium = TextStyle(
+  static TextStyle font18WhiteMedium = TextStyle(
     fontSize: 18.sp,
     fontWeight: FontWeightHelper.medium,
     color: AppColors.kWhiteColor,
@@ -69,7 +67,7 @@ class TextStyles {
     fontWeight: FontWeightHelper.regular,
     color: AppColors.kBlackColor,
   );
- static TextStyle font13OrangeRegular = TextStyle(
+  static TextStyle font13OrangeRegular = TextStyle(
     fontSize: 13.sp,
     fontWeight: FontWeightHelper.regular,
     color: AppColors.kPrimaryColor,
@@ -98,5 +96,4 @@ class TextStyles {
     fontWeight: FontWeightHelper.medium,
     color: AppColors.kBlackColor,
   );
-  
 }

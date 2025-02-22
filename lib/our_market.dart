@@ -11,9 +11,8 @@ class OurMarket extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     SupabaseClient client = Supabase.instance.client;
-     
+
     return ScreenUtilInit(
       designSize: const Size(375, 812),
       minTextAdapt: true,
@@ -23,12 +22,13 @@ class OurMarket extends StatelessWidget {
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Our Market',
-          home: client.auth.currentUser != null? MainNavBar() : const LoginView(),
+          home: client.auth.currentUser != null
+              ? MainNavBar()
+              : const LoginView(),
         ),
       ),
     );
   }
 }
-
 
 //client.auth.currentUser != null? MainNavBar() :

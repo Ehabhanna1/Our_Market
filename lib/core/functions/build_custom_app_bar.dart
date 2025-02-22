@@ -1,8 +1,6 @@
 import 'package:ecommerce_app/core/theming/app_colors.dart';
 import 'package:flutter/material.dart';
 
-
-
 AppBar buildCustomAppBar(BuildContext context, String title) {
   return AppBar(
     centerTitle: true,

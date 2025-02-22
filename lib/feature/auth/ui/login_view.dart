@@ -17,31 +17,24 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
 
-
-
   @override
   State<LoginView> createState() => _LoginViewState();
 }
 
 class _LoginViewState extends State<LoginView> {
-
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-
   bool isObscureText = true;
-
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuthenticationCubit, AuthenticationState>(
       listener: (context, state) {
-         if (state is LoginSuccess || state is GoogleSignInSuccess) {
-         
-          navigatePushReplacement(context,  MainNavBar());
+        if (state is LoginSuccess || state is GoogleSignInSuccess) {
+          navigatePushReplacement(context, MainNavBar());
         }
-
 
         if (state is LoginError) {
           showMessage(context, state.message);
@@ -51,112 +44,114 @@ class _LoginViewState extends State<LoginView> {
         AuthenticationCubit cubit = context.read<AuthenticationCubit>();
         return Scaffold(
           backgroundColor: AppColors.kScaffoldColor,
-
-          body: state is LoginLoading ? 
-          const Center(child: CircularProgressIndicator()) : 
-          SafeArea(
-            child: SingleChildScrollView(
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  children: [
-                    Text(
-                      "Welcome To Our Market",
-                      style: TextStyles.font24BlackBold,
-                    ),
-                    verticalSpace(20),
-                    Card(
-                      color: AppColors.kWhiteColor,
-                      margin: const EdgeInsets.all(24),
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(16),
-                        ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Column(
-                          children: [
-                            AppTextFormField(
-                              controller: emailController,
-                              hintText: 'Enter Your Email',
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Please enter your email';
-                                }
-                                return null;
-                              },
-                              labelText: 'Email',
-                              suffixIcon: Icon(Icons.email_outlined),
-                            ),
-                            verticalSpace(20),
-                            AppTextFormField(
-                              controller: passwordController,
-                              hintText: 'Enter Password',
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Please enter your password';
-                                }
-                                return null;
-                              },
-                              labelText: 'Password',
-                              isObscureText: isObscureText,
-                                suffixIcon: GestureDetector(
-                                            onTap: () {
-                                              setState(() {
-                                             isObscureText = !isObscureText;
-                                     });
-                                   },
-                             child: Icon(isObscureText ? Icons.visibility_off : Icons.visibility),
-                             ),
+          body: state is LoginLoading
+              ? const Center(child: CircularProgressIndicator())
+              : SafeArea(
+                  child: SingleChildScrollView(
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        children: [
+                          Text(
+                            "Welcome To Our Market",
+                            style: TextStyles.font24BlackBold,
+                          ),
+                          verticalSpace(20),
+                          Card(
+                            color: AppColors.kWhiteColor,
+                            margin: const EdgeInsets.all(24),
+                            shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(16),
                               ),
-                            verticalSpace(20),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                CustomTextButton(
-                                  textButton: "Forgot Password?",
-                                  onTap: () {
-                                    cubit.resetPassword(email: emailController.text);
-                                  },
-                                ),
-                              ],
                             ),
-                            verticalSpace(20),
-                            AppTextButton(
-                              buttonText: "Login",
-                              textStyle: TextStyles.font18WhiteSemiBold,
-                              //buttonHeight: 20.h,
-                              onPressed: () {
-                               if (_formKey.currentState!.validate()) {
-                                 cubit.login(email: emailController.text, password: passwordController.text);
-                               }
-                              },
+                            child: Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Column(
+                                children: [
+                                  AppTextFormField(
+                                    controller: emailController,
+                                    hintText: 'Enter Your Email',
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'Please enter your email';
+                                      }
+                                      return null;
+                                    },
+                                    labelText: 'Email',
+                                    suffixIcon: Icon(Icons.email_outlined),
+                                  ),
+                                  verticalSpace(20),
+                                  AppTextFormField(
+                                    controller: passwordController,
+                                    hintText: 'Enter Password',
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return 'Please enter your password';
+                                      }
+                                      return null;
+                                    },
+                                    labelText: 'Password',
+                                    isObscureText: isObscureText,
+                                    suffixIcon: GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          isObscureText = !isObscureText;
+                                        });
+                                      },
+                                      child: Icon(isObscureText
+                                          ? Icons.visibility_off
+                                          : Icons.visibility),
+                                    ),
+                                  ),
+                                  verticalSpace(20),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      CustomTextButton(
+                                        textButton: "Forgot Password?",
+                                        onTap: () {
+                                          cubit.resetPassword(
+                                              email: emailController.text);
+                                        },
+                                      ),
+                                    ],
+                                  ),
+                                  verticalSpace(20),
+                                  AppTextButton(
+                                    buttonText: "Login",
+                                    textStyle: TextStyles.font18WhiteSemiBold,
+                                    //buttonHeight: 20.h,
+                                    onPressed: () {
+                                      if (_formKey.currentState!.validate()) {
+                                        cubit.login(
+                                            email: emailController.text,
+                                            password: passwordController.text);
+                                      }
+                                    },
+                                  ),
+                                  verticalSpace(20),
+                                  Text(
+                                    "OR Login With",
+                                    style: TextStyles.font15DarkBlueMedium,
+                                  ),
+                                  verticalSpace(20),
+                                  CustomGoogleSignIn(
+                                    onTap: () {
+                                      cubit.googleSignIn();
+                                    },
+                                  ),
+                                  verticalSpace(30),
+                                  const DontHaveAccountText(),
+                                ],
+                              ),
                             ),
-                            verticalSpace(20),
-                            Text(
-                              "OR Login With",
-                              style: TextStyles.font15DarkBlueMedium,
-                            ),
-                            verticalSpace(20),
-                            
-                            CustomGoogleSignIn(
-                              onTap: () {
-                                cubit.googleSignIn();
-                              },
-                            ),
-
-                            verticalSpace(30),
-                            const DontHaveAccountText(),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
+                  ),
                 ),
-              ),
-            ),
-          ),
         );
       },
     );
@@ -168,6 +163,4 @@ class _LoginViewState extends State<LoginView> {
     passwordController.dispose();
     super.dispose();
   }
-
-
 }
