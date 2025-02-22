@@ -23,10 +23,26 @@ class ProductsDetailsCubit extends Cubit<ProductsDetailsState> {
       for (var rating in response.data) {
         ratingList.add(RatingModel.fromJson(rating));
       }
+      _getAverageRate();
+      log( averageRate.toString());
       emit(GetRateSuccess());
     } catch (e) {
       log(e.toString());
       emit(GetRateError());
     }
+  }
+
+
+
+// method average rate
+  void _getAverageRate() {
+    for (var userRate in ratingList) {
+      if (userRate.rate != null) {
+        averageRate += userRate.rate!;
+        
+      }
+      
+    }
+    averageRate = averageRate ~/ ratingList.length;
   }
 }
