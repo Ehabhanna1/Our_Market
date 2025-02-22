@@ -1,8 +1,14 @@
+import 'package:ecommerce_app/core/data/models/products_model/products_model.dart';
 import 'package:ecommerce_app/core/theming/styles.dart';
 import 'package:flutter/material.dart';
 
 class RowProductNameAndPrice extends StatelessWidget {
-  const RowProductNameAndPrice({super.key});
+  const RowProductNameAndPrice({
+    super.key,
+    required this.product,
+  });
+
+  final ProductsModel product;
 
   @override
   Widget build(BuildContext context) {
@@ -10,11 +16,11 @@ class RowProductNameAndPrice extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          "Product Name",
+          product.productName ?? "Product Name",
           style: TextStyles.font18BlackSemiBold,
         ),
         Text(
-          "220 LE",
+          "${product.price} LE",
           style: TextStyles.font18BlackBold,
         ),
       ],

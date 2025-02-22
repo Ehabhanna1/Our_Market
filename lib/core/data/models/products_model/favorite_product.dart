@@ -1,6 +1,4 @@
-
 import 'package:equatable/equatable.dart';
-
 
 class FavoriteProduct extends Equatable {
   final String? id;

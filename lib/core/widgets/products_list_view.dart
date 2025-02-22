@@ -17,21 +17,20 @@ class ProductsListView extends StatelessWidget {
       child: BlocConsumer<HomeViewCubit, HomeViewState>(
         listener: (context, state) {},
         builder: (context, state) {
-          
           List<ProductsModel> products = context.read<HomeViewCubit>().products;
 
-          return  state is GetDataLoading ? 
-          const Center(child: CircularProgressIndicator()): 
-           ListView.builder(
-            shrinkWrap: shrinkWrap ?? true,
-            physics: physics ?? NeverScrollableScrollPhysics(),
-            itemCount: products.length,
-            itemBuilder: (context, index) {
-              return CardProducts(
-                product: products[index],
-              );
-            },
-          );
+          return state is GetDataLoading
+              ? const Center(child: CircularProgressIndicator())
+              : ListView.builder(
+                  shrinkWrap: shrinkWrap ?? true,
+                  physics: physics ?? NeverScrollableScrollPhysics(),
+                  itemCount: products.length,
+                  itemBuilder: (context, index) {
+                    return CardProducts(
+                      product: products[index],
+                    );
+                  },
+                );
         },
       ),
     );

@@ -10,15 +10,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CardProducts extends StatelessWidget {
-
   const CardProducts({super.key, required this.product});
-  
-  final ProductsModel product ;
+
+  final ProductsModel product;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        navigateTo(context, ProductsDatailsView());
+        navigateTo(
+            context,
+            ProductsDatailsView(
+              product: product,
+            ));
       },
       child: Card(
         child: Column(
@@ -31,8 +34,8 @@ class CardProducts extends StatelessWidget {
                       bottomRight: Radius.circular(16.r),
                       topRight: Radius.circular(16.r)),
                   child: CustomCachedNetworkImage(
-                    url:
-                        product.imageUrl ?? "https://img.freepik.com/free-psd/macbook-mockup_1332-60596.jpg?t=st=1740220122~exp=1740223722~hmac=7b33a7d18d6fab59b50652c21a3146a350f3dfe71a5feaa834db53465810eaf5&w=1380",
+                    url: product.imageUrl ??
+                        "https://img.freepik.com/free-psd/macbook-mockup_1332-60596.jpg?t=st=1740220122~exp=1740223722~hmac=7b33a7d18d6fab59b50652c21a3146a350f3dfe71a5feaa834db53465810eaf5&w=1380",
                   ),
                 ),
                 Positioned(

@@ -22,7 +22,6 @@ class HomeViewCubit extends Cubit<HomeViewState> {
           'products_table?select=*,favorite_products(*),purchase_table(*)');
       for (var product in response.data) {
         products.add(ProductsModel.fromJson(product));
-        
       }
       emit(GetDataSuccess());
     } catch (e) {

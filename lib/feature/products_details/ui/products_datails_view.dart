@@ -1,3 +1,4 @@
+import 'package:ecommerce_app/core/data/models/products_model/products_model.dart';
 import 'package:ecommerce_app/core/functions/build_custom_app_bar.dart';
 import 'package:ecommerce_app/core/helper/spacing.dart';
 import 'package:ecommerce_app/core/theming/styles.dart';
@@ -10,7 +11,8 @@ import 'package:ecommerce_app/feature/products_details/ui/widgets/row_rating_num
 import 'package:flutter/material.dart';
 
 class ProductsDatailsView extends StatelessWidget {
-  const ProductsDatailsView({super.key});
+  const ProductsDatailsView({super.key, required this.product});
+  final ProductsModel product;
 
   @override
   Widget build(BuildContext context) {
@@ -19,14 +21,16 @@ class ProductsDatailsView extends StatelessWidget {
       body: ListView(
         children: [
           CustomCachedNetworkImage(
-            url:
+            url: product.imageUrl ??
                 "https://img.freepik.com/free-vector/realistic-cream-advertisement_52683-8098.jpg?uid=R184239962&ga=GA1.1.1137416873.1736544603&semt=ais_hybrid",
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 15, vertical: 16),
             child: Column(
               children: [
-                RowProductNameAndPrice(),
+                RowProductNameAndPrice(
+                  product: product,
+                ),
                 verticalSpace(20),
                 RowRatingNumberAndAddFavorite(),
                 verticalSpace(30),
