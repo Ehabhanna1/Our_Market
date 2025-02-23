@@ -47,10 +47,11 @@ class ProductsDatailsView extends StatelessWidget {
                       RowProductNameAndPrice(
                         product: product,
                       ),
+
                       verticalSpace(20),
                       Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                           children: [
                       Row(
                           children: [
                              Text(
@@ -71,6 +72,7 @@ class ProductsDatailsView extends StatelessWidget {
                       ),
                          ],
                     ),
+                    
                       verticalSpace(30),
                       Text(
                         "Product Description",
