@@ -14,3 +14,11 @@ final class GetRateLoading extends ProductsDetailsState {}
 final class GetRateSuccess extends ProductsDetailsState {}
 
 final class GetRateError extends ProductsDetailsState {}
+
+
+// for update rate or add new rate
+final class AddOrUpdateRateLoading extends ProductsDetailsState {}
+
+final class AddOrUpdateRateSuccess extends ProductsDetailsState {}
+
+final class AddOrUpdateRateError extends ProductsDetailsState {}
