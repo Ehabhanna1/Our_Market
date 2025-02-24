@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-
 // ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
@@ -24,15 +23,14 @@ class ProductsDetailsCubit extends Cubit<ProductsDetailsState> {
   Future<void> getRating({required String productId}) async {
     emit(GetRateLoading());
     try {
-      Response response = await _apiServices.getData('rates_table?select=*&for_product=eq.$productId');
+      Response response = await _apiServices
+          .getData('rates_table?select=*&for_product=eq.$productId');
       for (var rating in response.data) {
         ratingList.add(RatingModel.fromJson(rating));
       }
       _getAverageRate();
       _getUserRates();
 
-      
-      
       emit(GetRateSuccess());
     } catch (e) {
       log(e.toString());
@@ -40,30 +38,23 @@ class ProductsDetailsCubit extends Cubit<ProductsDetailsState> {
     }
   }
 
-
   void _getUserRates() {
-      List<RatingModel> userRates = ratingList.where((RatingModel rate) => rate.forUser == userId).toList();
-        if (userRates.isNotEmpty) {
-             userRate = userRates[0].rate!;
-        }
+    List<RatingModel> userRates =
+        ratingList.where((RatingModel rate) => rate.forUser == userId).toList();
+    if (userRates.isNotEmpty) {
+      userRate = userRates[0].rate!;
+    }
   }
 
- 
-
-
-
 // method average rate
- void _getAverageRate() {
+  void _getAverageRate() {
     for (var userRate in ratingList) {
       if (userRate.rate != null) {
-        
-        averageRate += userRate.rate!; 
+        averageRate += userRate.rate!;
       }
-      
     }
     if (ratingList.isNotEmpty) {
       averageRate = averageRate ~/ ratingList.length;
-      
     }
   }
 
@@ -76,8 +67,7 @@ class ProductsDetailsCubit extends Cubit<ProductsDetailsState> {
     return false;
   }
 
-
-   Future<void> addOrUpdateUserRate(
+  Future<void> addOrUpdateUserRate(
       {required String productId, required Map<String, dynamic> data}) async {
     // user rate exist ==> update for user rate
     // user doesn't exist ==> add rate
@@ -101,7 +91,7 @@ class ProductsDetailsCubit extends Cubit<ProductsDetailsState> {
     }
   }
 
-   Future<void> addComment({required Map<String, dynamic> data}) async {
+  Future<void> addComment({required Map<String, dynamic> data}) async {
     emit(AddCommentLoading());
     try {
       await _apiServices.postData("comments_table", data);
@@ -111,6 +101,4 @@ class ProductsDetailsCubit extends Cubit<ProductsDetailsState> {
       emit(AddCommentError());
     }
   }
-
 }
-

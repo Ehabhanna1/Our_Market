@@ -29,10 +29,9 @@ class HomeView extends StatelessWidget {
           SizedBox(
             height: 200.h,
             width: 300.w,
-             child: AnotherCarousel(
+            child: AnotherCarousel(
               autoplay: true,
               dotPosition: DotPosition.bottomCenter,
-             
               autoplayDuration: const Duration(seconds: 7),
               dotBgColor: Colors.transparent,
               dotIncreasedColor: AppColors.kPrimaryColor,
@@ -41,11 +40,8 @@ class HomeView extends StatelessWidget {
                 Image.asset("assets/images/onboardingtwo.png"),
                 Image.asset("assets/images/onboardingthree.png"),
               ],
-  
-              
-              
-              ),
-              ),
+            ),
+          ),
           verticalSpace(10),
           Text(
             "Popular Categories",
