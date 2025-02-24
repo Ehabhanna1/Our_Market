@@ -135,6 +135,7 @@ class _ProductsDatailsViewState extends State<ProductsDatailsView> {
                                 labelText: "Enter Your Feedback",
                                 suffixIcon: IconButton(
                                   onPressed: () async {
+                                    await context.read<AuthenticationCubit>().getUserData();
                                     await cubit.addComment(
                                       data: {
                                         "comment": _commentController.text,
