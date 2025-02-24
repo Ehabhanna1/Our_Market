@@ -34,7 +34,7 @@ class MainNavBar extends StatelessWidget {
               color: AppColors.kWhiteColor,
               child: Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                 child: GNav(
                     onTabChange: (index) {
                       navBarCubit.changeCurrentIndex(index);

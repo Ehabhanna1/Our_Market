@@ -31,6 +31,8 @@ class HomeView extends StatelessWidget {
             width: 300.w,
              child: AnotherCarousel(
               autoplay: true,
+              dotPosition: DotPosition.bottomCenter,
+             
               autoplayDuration: const Duration(seconds: 7),
               dotBgColor: Colors.transparent,
               dotIncreasedColor: AppColors.kPrimaryColor,

@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 
-
 // ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
@@ -99,6 +98,17 @@ class ProductsDetailsCubit extends Cubit<ProductsDetailsState> {
     } catch (e) {
       log(e.toString());
       emit(AddOrUpdateRateError());
+    }
+  }
+
+   Future<void> addComment({required Map<String, dynamic> data}) async {
+    emit(AddCommentLoading());
+    try {
+      await _apiServices.postData("comments_table", data);
+      emit(AddCommentSuccess());
+    } catch (e) {
+      log(e.toString());
+      emit(AddCommentError());
     }
   }
 

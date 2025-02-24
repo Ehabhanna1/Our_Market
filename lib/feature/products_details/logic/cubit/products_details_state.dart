@@ -22,3 +22,10 @@ final class AddOrUpdateRateLoading extends ProductsDetailsState {}
 final class AddOrUpdateRateSuccess extends ProductsDetailsState {}
 
 final class AddOrUpdateRateError extends ProductsDetailsState {}
+
+// for comment
+final class AddCommentLoading extends ProductsDetailsState {}
+
+final class AddCommentSuccess extends ProductsDetailsState {}
+
+final class AddCommentError extends ProductsDetailsState {}

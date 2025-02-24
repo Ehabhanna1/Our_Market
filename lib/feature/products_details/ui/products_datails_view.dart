@@ -7,6 +7,7 @@ import 'package:ecommerce_app/core/theming/styles.dart';
 
 import 'package:ecommerce_app/core/widgets/app_text_form_field.dart';
 import 'package:ecommerce_app/core/widgets/cached_network_image.dart';
+import 'package:ecommerce_app/feature/auth/logic/cubit/authentication_cubit.dart';
 import 'package:ecommerce_app/feature/products_details/logic/cubit/products_details_cubit.dart';
 import 'package:ecommerce_app/feature/products_details/ui/widgets/comments_list.dart';
 import 'package:ecommerce_app/feature/products_details/ui/widgets/row_product_name_and_price.dart';
@@ -15,19 +16,28 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-class ProductsDatailsView extends StatelessWidget {
+class ProductsDatailsView extends StatefulWidget {
   const ProductsDatailsView({super.key, required this.product});
   final ProductsModel product;
+
+  @override
+  State<ProductsDatailsView> createState() => _ProductsDatailsViewState();
+}
+
+class _ProductsDatailsViewState extends State<ProductsDatailsView> {
+
+  final TextEditingController _commentController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-          ProductsDetailsCubit()..getRating(productId: product.productId!),
+          ProductsDetailsCubit()..getRating(productId: widget.product.productId!),
       child: BlocConsumer<ProductsDetailsCubit, ProductsDetailsState>(
         listener: (context, state) {
           if (state is AddOrUpdateRateSuccess) {
-            navigatePushReplacement(context, this);
+            navigatePushReplacement(context, Widget as Widget);
           }
           
         },
@@ -38,12 +48,12 @@ class ProductsDatailsView extends StatelessWidget {
           return Scaffold(
             appBar: buildCustomAppBar(context,
             
-            product.productName ?? "Product Name"),
-            body: state is GetRateLoading ?
+            widget.product.productName ?? "Product Name"),
+            body: state is GetRateLoading || state is AddCommentLoading ?
              const Center(child: CircularProgressIndicator()) : ListView(
               children: [
                 CustomCachedNetworkImage(
-                  url: product.imageUrl ??
+                  url: widget.product.imageUrl ??
                       "https://img.freepik.com/free-vector/realistic-cream-advertisement_52683-8098.jpg?uid=R184239962&ga=GA1.1.1137416873.1736544603&semt=ais_hybrid",
                 ),
                 Padding(
@@ -51,7 +61,7 @@ class ProductsDatailsView extends StatelessWidget {
                   child: Column(
                     children: [
                       RowProductNameAndPrice(
-                        product: product,
+                        product: widget.product,
                       ),
 
                       verticalSpace(20),
@@ -81,7 +91,7 @@ class ProductsDatailsView extends StatelessWidget {
                     
                       verticalSpace(30),
                       Text(
-                        product.discription ?? "Product Description",
+                        widget.product.discription ?? "Product Description",
                         style: TextStyles.font20DarkRegular,
                       ),
                       verticalSpace(20),
@@ -98,21 +108,35 @@ class ProductsDatailsView extends StatelessWidget {
                                      ),
                                                  onRatingUpdate: (rating) {
                                        cubit.addOrUpdateUserRate(
-                                        productId: product.productId!,
+                                        productId: widget.product.productId!,
                                          data: {
                                                          "for_user": cubit.userId,
-                                                "for_product": product.productId,
+                                                "for_product": widget.product.productId,
                                                "rate": rating.toInt(),
                                                         });
                                                    },
                                                 ),
                       verticalSpace(20),
                       AppTextFormField(
+                        controller: _commentController,
                           hintText: "Type Your Feedback",
                           validator: (value) {},
-                          labelText: "Your Feedback",
+                          labelText: "Enter Your Feedback",
                           suffixIcon: IconButton(
-                            onPressed: () {},
+                            onPressed: () async {
+                             await cubit.addComment(
+                                data: {
+                                      "comment": _commentController.text,
+                                      "for_user": cubit.userId,
+                                      "for_product": widget.product.productId,
+                                      "user_name": context.read<AuthenticationCubit>().usersDataModel?.name?? "User is Null"
+                                            
+                                    },
+                                    
+                                );
+                                _commentController.clear();
+
+                            },
                             icon: Icon(
                               Icons.send_outlined,
                               //color: AppColors.kGreyColor,
@@ -136,5 +160,10 @@ class ProductsDatailsView extends StatelessWidget {
         },
       ),
     );
+  }
+  @override
+  void dispose() {
+    _commentController.dispose();
+    super.dispose();
   }
 }
