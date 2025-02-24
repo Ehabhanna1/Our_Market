@@ -46,6 +46,7 @@ dependencies:
 
   dio: ^5.8.0+1
   another_carousel_pro: ^1.0.2
+  shimmer: ^3.0.0
   
 
   

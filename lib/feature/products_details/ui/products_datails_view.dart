@@ -15,6 +15,7 @@ import 'package:ecommerce_app/feature/products_details/ui/widgets/row_product_na
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:shimmer/shimmer.dart';
 
 class ProductsDatailsView extends StatefulWidget {
   const ProductsDatailsView({super.key, required this.product});
@@ -50,7 +51,26 @@ class _ProductsDatailsViewState extends State<ProductsDatailsView> {
             
             widget.product.productName ?? "Product Name"),
             body: state is GetRateLoading || state is AddCommentLoading ?
-             const Center(child: CircularProgressIndicator()) : ListView(
+              Center(
+                   
+                        child: Shimmer.fromColors(
+                                     baseColor: AppColors.kPrimaryColor,
+                             highlightColor: Colors.red,
+                                    child: Text(
+                                  'Loading',
+                                   textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                          fontSize: 40.0,
+                                fontWeight:
+                               FontWeight.bold,
+                               ),
+                                   ),
+                               ),
+                               )
+             
+             
+             
+             : ListView(
               children: [
                 CustomCachedNetworkImage(
                   url: widget.product.imageUrl ??
@@ -150,7 +170,7 @@ class _ProductsDatailsViewState extends State<ProductsDatailsView> {
                         textAlign: TextAlign.start,
                       ),
                       verticalSpace(20),
-                      CommentsList(),
+                      CommentsList(productsModel: widget.product,),
                     ],
                   ),
                 ),
