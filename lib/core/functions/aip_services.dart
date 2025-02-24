@@ -20,7 +20,7 @@ class ApiServices {
   }
 
   Future<Response> patchData(String url, Map<String, dynamic> data) async {
-    return await _dio.put(url, data: data);
+    return await _dio.patch(url, data: data);
   }
 
   Future<Response> deleteData(String url) async {

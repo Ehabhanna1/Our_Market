@@ -1,5 +1,6 @@
 import 'dart:developer';
-import 'dart:math';
+
+
 
 // ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
@@ -14,17 +15,17 @@ part 'products_details_state.dart';
 class ProductsDetailsCubit extends Cubit<ProductsDetailsState> {
   ProductsDetailsCubit() : super(ProductsDetailsInitial());
 
-  final ApiServices apiServices = ApiServices();
+  final ApiServices _apiServices = ApiServices();
   String userId = Supabase.instance.client.auth.currentUser!.id;
 
   List<RatingModel> ratingList = [];
-  int averageRate =0;
+  int averageRate = 0;
   int userRate = 5;
 
   Future<void> getRating({required String productId}) async {
     emit(GetRateLoading());
     try {
-      Response response = await apiServices.getData('rates_table?select=*&for_product=eq.$productId');
+      Response response = await _apiServices.getData('rates_table?select=*&for_product=eq.$productId');
       for (var rating in response.data) {
         ratingList.add(RatingModel.fromJson(rating));
       }
@@ -40,6 +41,7 @@ class ProductsDetailsCubit extends Cubit<ProductsDetailsState> {
     }
   }
 
+
   void _getUserRates() {
       List<RatingModel> userRates = ratingList.where((RatingModel rate) => rate.forUser == userId).toList();
         if (userRates.isNotEmpty) {
@@ -52,54 +54,53 @@ class ProductsDetailsCubit extends Cubit<ProductsDetailsState> {
 
 
 // method average rate
-  void _getAverageRate() {
+ void _getAverageRate() {
     for (var userRate in ratingList) {
       if (userRate.rate != null) {
-        averageRate += userRate.rate!;
         
+        averageRate += userRate.rate!; 
       }
       
     }
-    averageRate = averageRate ~/ ratingList.length;
+    if (ratingList.isNotEmpty) {
+      averageRate = averageRate ~/ ratingList.length;
+      
+    }
   }
 
-  bool _isUserRateExist ({required String productId}){
-    for(var rate in ratingList){
-      if((rate.forProduct == productId) && (rate.forUser == userId)){
+  bool _isUserRateExist({required String productId}) {
+    for (var rate in ratingList) {
+      if ((rate.forUser == userId) && (rate.forProduct == productId)) {
         return true;
       }
-     
     }
     return false;
   }
-  Future<void> addOrUpdateRate({required String productId,required Map<String, dynamic> data}) async {
 
-    String url = 'rates_table?select=*&for_user=eq.$userId&for_product=eq.$productId';
-    // user rate exist ==> update user rate
-    // user rate not exist ==> add new rate
+
+   Future<void> addOrUpdateUserRate(
+      {required String productId, required Map<String, dynamic> data}) async {
+    // user rate exist ==> update for user rate
+    // user doesn't exist ==> add rate
+    String url =
+        "rates_table?select=*&for_user=eq.$userId&for_product=eq.$productId";
     emit(AddOrUpdateRateLoading());
-
     try {
-  if(_isUserRateExist(productId: productId)){
-    // patch rate ==> update 
-    await apiServices.patchData(url, data);
-   
-  }else{
-    // post rate ==> add new rate
-    await apiServices.postData(url, data);
-    
+      if (_isUserRateExist(productId: productId)) {
+        // user rate exist ==> update for user rate
+        // patch data
+        await _apiServices.patchData(url, data);
+      } else {
+        // post rate
+        await _apiServices.postData(url, data);
+      }
+
+      emit(AddOrUpdateRateSuccess());
+    } catch (e) {
+      log(e.toString());
+      emit(AddOrUpdateRateError());
+    }
   }
 
-  emit(AddOrUpdateRateSuccess());
-} catch (e) {
-   log(e.toString());
-   emit(AddOrUpdateRateError());
-
 }
-  }
-   
 
-
-
-
-}

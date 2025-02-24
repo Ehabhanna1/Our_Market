@@ -1,4 +1,6 @@
+import 'package:another_carousel_pro/another_carousel_pro.dart';
 import 'package:ecommerce_app/core/helper/spacing.dart';
+import 'package:ecommerce_app/core/theming/app_colors.dart';
 import 'package:ecommerce_app/core/theming/styles.dart';
 import 'package:ecommerce_app/core/widgets/custom_search_field.dart';
 import 'package:ecommerce_app/core/widgets/products_list_view.dart';
@@ -24,11 +26,24 @@ class HomeView extends StatelessWidget {
           verticalSpace(10),
           CustomSearchField(),
           verticalSpace(20),
-          Image.asset(
-            "assets/images/onboardingone.png",
-            width: double.maxFinite,
-            height: 220.h,
-          ),
+          SizedBox(
+            height: 200.h,
+            width: 300.w,
+             child: AnotherCarousel(
+              autoplay: true,
+              autoplayDuration: const Duration(seconds: 7),
+              dotBgColor: Colors.transparent,
+              dotIncreasedColor: AppColors.kPrimaryColor,
+              images: [
+                Image.asset("assets/images/onboardingone.png"),
+                Image.asset("assets/images/onboardingtwo.png"),
+                Image.asset("assets/images/onboardingthree.png"),
+              ],
+  
+              
+              
+              ),
+              ),
           verticalSpace(10),
           Text(
             "Popular Categories",

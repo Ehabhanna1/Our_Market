@@ -1,9 +1,10 @@
 import 'package:ecommerce_app/core/data/models/products_model/products_model.dart';
 import 'package:ecommerce_app/core/functions/build_custom_app_bar.dart';
+import 'package:ecommerce_app/core/functions/navigation.dart';
 import 'package:ecommerce_app/core/helper/spacing.dart';
 import 'package:ecommerce_app/core/theming/app_colors.dart';
 import 'package:ecommerce_app/core/theming/styles.dart';
-import 'package:ecommerce_app/core/widgets/app_rating_bar.dart';
+
 import 'package:ecommerce_app/core/widgets/app_text_form_field.dart';
 import 'package:ecommerce_app/core/widgets/cached_network_image.dart';
 import 'package:ecommerce_app/feature/products_details/logic/cubit/products_details_cubit.dart';
@@ -12,6 +13,7 @@ import 'package:ecommerce_app/feature/products_details/ui/widgets/row_product_na
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class ProductsDatailsView extends StatelessWidget {
   const ProductsDatailsView({super.key, required this.product});
@@ -24,6 +26,9 @@ class ProductsDatailsView extends StatelessWidget {
           ProductsDetailsCubit()..getRating(productId: product.productId!),
       child: BlocConsumer<ProductsDetailsCubit, ProductsDetailsState>(
         listener: (context, state) {
+          if (state is AddOrUpdateRateSuccess) {
+            navigatePushReplacement(context, this);
+          }
           
         },
         builder: (context, state) {
@@ -34,7 +39,8 @@ class ProductsDatailsView extends StatelessWidget {
             appBar: buildCustomAppBar(context,
             
             product.productName ?? "Product Name"),
-            body: state is GetRateLoading ? const Center(child: CircularProgressIndicator()) : ListView(
+            body: state is GetRateLoading ?
+             const Center(child: CircularProgressIndicator()) : ListView(
               children: [
                 CustomCachedNetworkImage(
                   url: product.imageUrl ??
@@ -75,11 +81,31 @@ class ProductsDatailsView extends StatelessWidget {
                     
                       verticalSpace(30),
                       Text(
-                        "Product Description",
+                        product.discription ?? "Product Description",
                         style: TextStyles.font20DarkRegular,
                       ),
                       verticalSpace(20),
-                      AppRatingBar(),
+                      RatingBar.builder(
+                       initialRating: cubit.userRate.toDouble(),
+                             minRating: 1,
+                          direction: Axis.horizontal,
+                                 allowHalfRating: true,
+                                     itemCount: 5,
+                                itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                                      itemBuilder: (context, _) => Icon(
+                                            Icons.star,
+                                                      color: Colors.amber,
+                                     ),
+                                                 onRatingUpdate: (rating) {
+                                       cubit.addOrUpdateUserRate(
+                                        productId: product.productId!,
+                                         data: {
+                                                         "for_user": cubit.userId,
+                                                "for_product": product.productId,
+                                               "rate": rating.toInt(),
+                                                        });
+                                                   },
+                                                ),
                       verticalSpace(20),
                       AppTextFormField(
                           hintText: "Type Your Feedback",

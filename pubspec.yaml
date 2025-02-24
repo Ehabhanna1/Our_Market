@@ -45,6 +45,7 @@ dependencies:
   equatable: ^2.0.7
 
   dio: ^5.8.0+1
+  another_carousel_pro: ^1.0.2
   
 
   
