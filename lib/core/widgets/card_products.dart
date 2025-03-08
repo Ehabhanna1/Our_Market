@@ -10,9 +10,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CardProducts extends StatelessWidget {
-  const CardProducts({super.key, required this.product});
+  const CardProducts({super.key, required this.product, this.onPressed});
 
   final ProductsModel product;
+  final void Function()? onPressed;
+
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -71,7 +74,7 @@ class CardProducts extends StatelessWidget {
                         style: TextStyles.font18BlackSemiBold,
                       ),
                       IconButton(
-                        onPressed: () {},
+                        onPressed: onPressed,
                         icon: Icon(
                           Icons.favorite_border_outlined,
                           color: AppColors.kGreyColor,

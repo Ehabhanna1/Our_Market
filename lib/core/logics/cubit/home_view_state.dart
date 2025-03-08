@@ -9,4 +9,11 @@ final class GetDataLoading extends HomeViewState {}
 
 final class GetDataSuccess extends HomeViewState {}
 
+
 final class GetDataError extends HomeViewState {}
+
+
+// add to favorite
+final class AddToFavoriteLoading extends HomeViewState {}
+final class AddToFavoriteSuccess extends HomeViewState {}
+final class AddToFavoriteError extends HomeViewState {}

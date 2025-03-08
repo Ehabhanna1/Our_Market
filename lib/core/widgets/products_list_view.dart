@@ -34,6 +34,11 @@ class ProductsListView extends StatelessWidget {
                   itemCount: products.length,
                   itemBuilder: (context, index) {
                     return CardProducts(
+                      onPressed: () {
+                        context.read<HomeViewCubit>().addToFavorite(
+                           products[index].productId!,
+                        );
+                      },
                       product: products[index],
                     );
                   },
