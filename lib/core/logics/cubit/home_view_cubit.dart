@@ -83,5 +83,20 @@ class HomeViewCubit extends Cubit<HomeViewState> {
     return favoriteProduct.containsKey(productId);
   }
 
+  // Remove From favorite
+  Future<void> removeFromFavorite(String productId) async {
+    emit(RemoveFromFavoriteLoading());
+    try {
+      await apiServices.deleteData(
+        "favorite_products?for_user=eq.$userId&for_product=eq.$productId",
+      );
+      favoriteProduct.removeWhere( (key, value) => key == productId);
+      emit(RemoveFromFavoriteSuccess());
+    } catch (e) {
+      log(e.toString());
+      emit(RemoveFromFavoriteError());
+    }
+  }
+
 
 }

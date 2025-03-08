@@ -17,3 +17,8 @@ final class GetDataError extends HomeViewState {}
 final class AddToFavoriteLoading extends HomeViewState {}
 final class AddToFavoriteSuccess extends HomeViewState {}
 final class AddToFavoriteError extends HomeViewState {}
+
+// remove from favorite
+final class RemoveFromFavoriteLoading extends HomeViewState {}
+final class RemoveFromFavoriteSuccess extends HomeViewState {}
+final class RemoveFromFavoriteError extends HomeViewState {}

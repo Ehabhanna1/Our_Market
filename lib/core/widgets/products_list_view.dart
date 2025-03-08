@@ -36,6 +36,12 @@ class ProductsListView extends StatelessWidget {
                     return CardProducts(
                       isFavorite: context.read<HomeViewCubit>().checkIsFavorite(products[index].productId!),
                       onPressed: () {
+
+                        bool isFavorite = context.read<HomeViewCubit>().checkIsFavorite(products[index].productId!);
+                        isFavorite
+                            ? context.read<HomeViewCubit>().removeFromFavorite(
+                          products[index].productId!,
+                        ):
                         context.read<HomeViewCubit>().addToFavorite(
                            products[index].productId!,
                         );
