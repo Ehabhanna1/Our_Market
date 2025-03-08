@@ -1,9 +1,11 @@
 import 'package:another_carousel_pro/another_carousel_pro.dart';
+import 'package:ecommerce_app/core/functions/navigation.dart';
 import 'package:ecommerce_app/core/helper/spacing.dart';
 import 'package:ecommerce_app/core/theming/app_colors.dart';
 import 'package:ecommerce_app/core/theming/styles.dart';
 import 'package:ecommerce_app/core/widgets/custom_search_field.dart';
 import 'package:ecommerce_app/core/widgets/products_list_view.dart';
+import 'package:ecommerce_app/feature/home/ui/search_view.dart';
 import 'package:ecommerce_app/feature/home/ui/widgets/categories_list.dart';
 
 import 'package:flutter/material.dart';
@@ -24,7 +26,12 @@ class HomeView extends StatelessWidget {
             style: TextStyles.font24BlackBold,
           ),
           verticalSpace(10),
-          CustomSearchField(),
+          CustomSearchField(
+            onPressed: () {
+              navigateTo(context, const SearchView());
+              
+            },
+          ),
           verticalSpace(20),
           SizedBox(
             height: 200.h,

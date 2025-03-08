@@ -146,6 +146,7 @@ class _ProductsDatailsViewState extends State<ProductsDatailsView> {
                                                 .usersDataModel
                                                 ?.name ??
                                             "User is Null"
+                                          
                                       },
                                     );
                                     _commentController.clear();
@@ -164,7 +165,7 @@ class _ProductsDatailsViewState extends State<ProductsDatailsView> {
                             ),
                             verticalSpace(20),
                             CommentsList(
-                              productsModel: widget.product,
+                              productModel: widget.product,
                             ),
                           ],
                         ),

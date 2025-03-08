@@ -6,12 +6,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomSearchField extends StatelessWidget {
   const CustomSearchField({
-    super.key,
+    super.key, this.onPressed,  this.controller,
   });
+
+  final void Function()? onPressed;
+  final TextEditingController? controller;
 
   @override
   Widget build(BuildContext context) {
     return AppTextFormField(
+      controller: controller,
       hintText: "Search....",
       validator: (value) {},
       labelText: "Search in Market",
@@ -36,7 +40,7 @@ class CustomSearchField extends StatelessWidget {
           ),
           // ignore: deprecated_member_use
         ),
-        onPressed: () {},
+        onPressed: onPressed,
         icon: Icon(
           Icons.search,
           size: 30,
