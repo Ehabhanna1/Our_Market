@@ -9,17 +9,22 @@ class ProductsListView extends StatelessWidget {
   final ScrollPhysics? physics;
 
   final String? query;
+  final String? category;
 
-  const ProductsListView({super.key, this.shrinkWrap, this.physics, this.query});
+  const ProductsListView({super.key, this.shrinkWrap, this.physics, this.query, this.category});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => HomeViewCubit()..getProducts(query: query),
+      create: (context) => HomeViewCubit()..getProducts(query: query, category: category),
       child: BlocConsumer<HomeViewCubit, HomeViewState>(
         listener: (context, state) {},
         builder: (context, state) {
-          List<ProductsModel> products = query != null ? context.read<HomeViewCubit>().searchResults : context.read<HomeViewCubit>().products;
+          List<ProductsModel> products = query != null ? 
+          context.read<HomeViewCubit>().searchResults :
+          category != null ? 
+          context.read<HomeViewCubit>().categoryProducts :
+           context.read<HomeViewCubit>().products;
 
           return state is GetDataLoading
               ? const Center(child: CircularProgressIndicator())

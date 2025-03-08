@@ -1,4 +1,6 @@
+import 'package:ecommerce_app/core/functions/navigation.dart';
 import 'package:ecommerce_app/core/theming/app_colors.dart';
+import 'package:ecommerce_app/feature/home/ui/categores_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -14,20 +16,26 @@ class CategoriesList extends StatelessWidget {
         itemCount: categories.length,
         itemBuilder: (context, index) => Padding(
           padding: const EdgeInsets.all(10),
-          child: Column(children: [
-            CircleAvatar(
-              radius: 30.r,
-              backgroundColor: AppColors.kPrimaryColor,
-              child: Icon(
-                categories[index].icon,
-                size: 30.r,
-                color: AppColors.kWhiteColor,
+          child: GestureDetector(
+            onTap: () {
+              navigateTo(context, CategoryView(category: categories[index].text,));
+            },
+            child: Column(
+              children: [
+              CircleAvatar(
+                radius: 30.r,
+                backgroundColor: AppColors.kPrimaryColor,
+                child: Icon(
+                  categories[index].icon,
+                  size: 30.r,
+                  color: AppColors.kWhiteColor,
+                ),
               ),
-            ),
-            Text(
-              categories[index].text,
-            ),
-          ]),
+              Text(
+                categories[index].text,
+              ),
+            ]),
+          ),
         ),
       ),
     );
