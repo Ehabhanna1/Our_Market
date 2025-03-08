@@ -1,9 +1,7 @@
 import 'package:ecommerce_app/core/data/models/products_model/products_model.dart';
-import 'package:ecommerce_app/core/theming/app_colors.dart';
 
 
 import 'package:flutter/material.dart';
-import 'package:shimmer/shimmer.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 class CommentsList extends StatelessWidget {

@@ -10,10 +10,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CardProducts extends StatelessWidget {
-  const CardProducts({super.key, required this.product, this.onPressed});
+  const CardProducts({super.key, required this.product, this.onPressed, required this.isFavorite});
 
   final ProductsModel product;
   final void Function()? onPressed;
+  final bool isFavorite ;
 
 
   @override
@@ -76,8 +77,8 @@ class CardProducts extends StatelessWidget {
                       IconButton(
                         onPressed: onPressed,
                         icon: Icon(
-                          Icons.favorite_border_outlined,
-                          color: AppColors.kGreyColor,
+                          Icons.favorite,
+                          color: isFavorite ? AppColors.kPrimaryColor : AppColors.kGreyColor,
                           size: 25.sp,
                         ),
                       )
