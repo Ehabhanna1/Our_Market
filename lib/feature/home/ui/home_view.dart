@@ -11,8 +11,18 @@ import 'package:ecommerce_app/feature/home/ui/widgets/categories_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
   const HomeView({super.key});
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+
+  final TextEditingController _searchController = TextEditingController();
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +37,14 @@ class HomeView extends StatelessWidget {
           ),
           verticalSpace(10),
           CustomSearchField(
+            controller: _searchController,
             onPressed: () {
-              navigateTo(context, const SearchView());
+             if(_searchController.text.isNotEmpty){
+               navigateTo(context, SearchView(
+                query: _searchController.text,
+              ));
+             }
+             _searchController.clear();
               
             },
           ),
@@ -66,5 +82,10 @@ class HomeView extends StatelessWidget {
         ],
       ),
     );
+  }
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
   }
 }
